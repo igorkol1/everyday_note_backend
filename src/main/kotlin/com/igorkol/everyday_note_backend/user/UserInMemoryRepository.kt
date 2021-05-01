@@ -1,4 +1,4 @@
-package com.igorkol.everyday_note_backend.User
+package com.igorkol.everyday_note_backend.user
 
 import org.springframework.stereotype.Component
 

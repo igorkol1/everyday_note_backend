@@ -1,11 +1,12 @@
-package com.igorkol.everyday_note_backend.User
+package com.igorkol.everyday_note_backend.user
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
 
-@RestController("/user")
+@RestController()
+@RequestMapping("/user")
 class UserController {
 
     @Autowired
