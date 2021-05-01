@@ -18,7 +18,7 @@ class UserController {
     }
 
     @GetMapping("/get/{id}")
-    fun getUser(@PathVariable id: String): User {
+    fun getUser(@PathVariable id: Long): User {
         return userService.findUser(id) ?: throw ResponseStatusException(
             HttpStatus.NOT_FOUND, "User Not Found"
         )

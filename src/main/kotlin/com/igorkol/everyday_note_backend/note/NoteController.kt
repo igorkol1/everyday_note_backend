@@ -16,7 +16,7 @@ class NoteController {
     }
 
     @PostMapping("/save")
-    fun saveNote(@RequestBody note: Note): Note {
+    fun saveNote(@RequestBody note: NoteDto): Note {
         return noteService.saveNote(note)
     }
 
