@@ -1,6 +1,5 @@
 package com.igorkol.everyday_note_backend.user.details
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.igorkol.everyday_note_backend.user.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -9,25 +8,13 @@ import java.util.*
 import java.util.stream.Collectors
 
 
-class UserDetailsImpl(
-    id: Long,
-    userName: String,
-    email: String,
-    password: String,
-    authorities: List<GrantedAuthority>
+data class UserDetailsImpl(
+    var id: Long,
+    val userName: String,
+    var email: String,
+    private var password: String,
+    var authorities: List<GrantedAuthority>
 ) :UserDetails {
-    private val serialVersionUID = 1L
-
-    private var id: Long? = null
-
-    private var username: String? = null
-
-    private var email: String? = null
-
-    @JsonIgnore
-    private var password: String? = null
-
-    private var authorities: Collection<GrantedAuthority>? = null
 
     companion object {
         fun build(user: User):UserDetailsImpl {
@@ -52,12 +39,13 @@ class UserDetailsImpl(
         return authorities
     }
 
-    override fun getPassword(): String? {
+    override fun getPassword(): String {
         return password
     }
 
-    override fun getUsername(): String? {
-        return username
+    override fun getUsername(): String {
+        val value = userName
+        return value
     }
 
     override fun isAccountNonExpired(): Boolean {
