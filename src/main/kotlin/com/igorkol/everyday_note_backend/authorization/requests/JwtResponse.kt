@@ -8,5 +8,4 @@ class JwtResponse(
     val roles: List<String>
 ) {
     var tokenType = "Bearer"
-
 }

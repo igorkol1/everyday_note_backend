@@ -16,18 +16,18 @@ import javax.servlet.http.HttpServletResponse
 
 class AuthTokenFilter: OncePerRequestFilter() {
     @Autowired
-    private val jwtUtils: JwtUtils? = null
+    lateinit var jwtUtils: JwtUtils
 
     @Autowired
-    private val userDetailsService: UserDetailsServiceImpl? = null
+    lateinit var userDetailsService: UserDetailsServiceImpl
 
     @Throws(ServletException::class, IOException::class)
     override fun doFilterInternal(request: HttpServletRequest, p1: HttpServletResponse, filterChain: FilterChain) {
         try {
             val jwt = parseJwt(request)
-            if (jwt != null && jwtUtils!!.validateJwtToken(jwt)) {
+            if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
                 val username: String = jwtUtils.getUserNameFromJwtToken(jwt)!!
-                val userDetails = userDetailsService!!.loadUserByUsername(username)
+                val userDetails = userDetailsService.loadUserByUsername(username)
                 val authentication = UsernamePasswordAuthenticationToken(
                     userDetails, null,
                     userDetails!!.authorities
